@@ -9,4 +9,4 @@ How to use?
 2. Get the IP of the CS3
 3. Change the IP in webs.php
 4. Install an Apache and PHP server (XAMPP is a recomended simple program for this) and replace the files in htdocs folder.
-5. Start the server and access the webinterface througt the browser under http://localhost or http://127.XXX.XXX.XXX
+5. Start the server and access the webinterface througt the browser under http://localhost/webs.php or http://127.XXX.XXX.XXX/webs.php
