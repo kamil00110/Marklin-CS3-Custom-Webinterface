@@ -17,3 +17,4 @@ How to use?
 
 
 UI is still not resizeble. But will when all the UI is finished.
+![WebSocket Client - Google Chrome 21 05 2024 01_54_20](https://github.com/kamil00110/Marklin-CS3-Custom-Webinterface/assets/68923965/c804cfca-cb23-4789-8f74-eb26875a6117)
