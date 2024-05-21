@@ -52,8 +52,8 @@ UI is still not resizeble. But will when all the UI is finished.
 
 ### Adresses:
 
-_http://CS3 IP/app/api/loks, mag, mags, devs, prefs, gbs, info, filemanager, automatics, helps, system_
-_http://CS3 IP/config/geraet.vrs, lokomotive.cs2, fahrstrassen.cs2, gleisbild.cs2, magnetartikel.cs2_
+http://CS3 IP/app/api/loks, mag, mags, devs, prefs, gbs, info, filemanager, automatics, helps, system
+http://CS3 IP/config/geraet.vrs, lokomotive.cs2, fahrstrassen.cs2, gleisbild.cs2, magnetartikel.cs2
 
 
 ## Planned features:
