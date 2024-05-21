@@ -1,4 +1,4 @@
-# MÄrklin CS3 Custom Webinterface Project
+# Märklin CS3 Custom Webinterface Project
 
 The project is a work in progress. Bugs probebly won't be fixed. Everyone that wants to add features is allowed to help in this project. 
 
