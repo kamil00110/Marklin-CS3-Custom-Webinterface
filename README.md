@@ -21,12 +21,13 @@ UI is still not resizeble. But will when all the UI is finished.
 
 Planned features:
 
--train controll
--camera train controll
--mag controll
--s88 reedout
--PHP based programming language
--track builder
--automatic mode
--train and mag editor
--other comunications with the CS§
+1. train controll
+2. camera train controll
+3. mag controll
+4. s88 reedout
+5. PHP based programming language
+6. track builder
+7. onboard sound playback
+8. automatic mode
+9. train and mag editor
+10. other comunications with the CS3
