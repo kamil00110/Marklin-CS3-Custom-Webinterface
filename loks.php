@@ -55,11 +55,11 @@ $data = fetchData($url);
 
 // Log the fetched data
 if ($data) {
-    logData($logFile, $data);
     $jsonData = json_decode($data, true);
     echo "<div style='background-color: transparen; position: relative; width: 150px; height: 50px;'>need pla</div>";
     foreach ($jsonData as $part) {
         $name = htmlspecialchars($part['name'] ?? 'None');
+		$internname = htmlspecialchars($part['internname'] ?? 'None');
         $icon = htmlspecialchars($part['icon'] ?? 'None');
         $speed = htmlspecialchars($part['speed'] ?? 'None');
         $recent = htmlspecialchars($part['recent'] ?? 'None');
@@ -71,7 +71,7 @@ if ($data) {
 		$icon = "http://".$cs3ip.$icon.".png";
         echo "
 		    
-		    <div style='box-shadow: 0px 0px 5px grey; position: relative; padding-left: 7px; padding-right: 7px; margin: 10px; border-radius: 5px; width:90px; height:90px; background-color: #f7f7f7; overflow: hide;'>
+		    <a href='#$internname'><div style='box-shadow: 0px 0px 5px grey; position: relative; padding-left: 7px; padding-right: 7px; margin: 10px; border-radius: 5px; width:90px; height:90px; background-color: #f7f7f7; overflow: hide;'>
 		    <div style='text-align: center; font-size: 11px; padding-top:10px; width: 80px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;'>$name</div>
 		    <div style='box-shadow: inset 0px 0px 5px rgba(0,0,0,0.5); padding-left: 3px; padding-right: 3px; margin-top:5px; background-color: #dbdbdb; width: 80px; height: 45px; border-radius: 5px;'><div style='position: absolute; padding-bottom: 20px; bottom: 0; width: 80px;'><img src='$icon' style='vertical-align: text-bottom;'; max-height='40px' width='80px'></div></div>";
 			if($dir=="0"){echo "<progress class='bar2' id='file' value='$speed' max='1000'></progress>";} 
@@ -94,7 +94,7 @@ if ($data) {
             //echo "<p>None</p>";
         }
         
-        echo "</div>";
+        echo "</div></a>";
     }
 echo "<div style='background-color: transparen; position: relative; width: 150px; height: 50px;'>need pla</div>";
     echo "";
