@@ -28,7 +28,11 @@
     </style>
 </head>
 <body>
-
+    <?php 
+if(!isset($_COOKIE["cs3ip"])){
+	header("Location: index.php");
+}
+?>
 	<div style='display:flex; align-items:center; padding-left: 70px; padding-right: 70px; background-color: #e8e8e8; border-radius: 0px 0px 20px 20px; margin-left: 1vw; margin-right: 1vw; position: absolute; top: 0; width:90vw; height: 90px;'>
 	<div style=' margin: 10px; border-radius: 10px; position: relative; background-color: #ededed; width: 72px; height: 72px;'>
 	<svg
@@ -72,7 +76,22 @@
     <input type="text" id="message" placeholder="Input Commands">
     <button id="send">Send</button>
 	</div>
-
+<script>
+function getCookie(cname) {
+  let name = cname + "=";
+  let ca = document.cookie.split(';');
+  for(let i = 0; i < ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
+</script>
 <script>
   async function loadContentForClass(className, url) {
     try {
@@ -111,7 +130,8 @@ function myFunction(internname) {
 <script>
 function sendWs(type, name, func, addres, state){
         let ws;
-        const wsUrl = 'ws://192.168.2.125:8080/socket.io/?EIO=3&transport=websocket'; // Adjust the endpoint as needed
+		let ip = getCookie("cs3ip");
+        const wsUrl = 'ws://'+ip+':8080/socket.io/?EIO=3&transport=websocket'; // Adjust the endpoint as needed
 		ws = new WebSocket(wsUrl);
 		
 		if (type == "lok"){
@@ -146,7 +166,8 @@ function sendWs(type, name, func, addres, state){
     </script>
     <script>
         let ws;
-        const wsUrl = 'ws://192.168.2.125:8080/socket.io/?EIO=3&transport=websocket'; // Adjust the endpoint as needed
+		let ip = getCookie("cs3ip");
+        const wsUrl = 'ws://'+ip+':8080/socket.io/?EIO=3&transport=websocket'; // Adjust the endpoint as needed
 
         function connect() {
             log('Attempting to connect to WebSocket...');
@@ -244,7 +265,7 @@ repeatSendToServer(1000); // 3000 milliseconds = 3 seconds
 	<div style="position:absolute; z-index:9999;" class='lokcontroll'></div>
 	<?php
      // URL of the API to fetch data from
-     $cs3ip = "192.168.2.125";
+     $cs3ip = $_COOKIE["cs3ip"];
 $url2 = 'http://'.$cs3ip.'/app/api/loks';
 // Function to fetch data from the URL
 function fetchData($url2) {

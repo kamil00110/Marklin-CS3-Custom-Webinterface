@@ -1,6 +1,6 @@
 	<?php
      // URL of the API to fetch data from
-     $cs3ip = "192.168.2.125";
+     $cs3ip = $_COOKIE["cs3ip"];
 $url2 = 'http://'.$cs3ip.'/app/api/loks';
 
 // Path to the log file

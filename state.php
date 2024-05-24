@@ -1,6 +1,6 @@
 <?php
 // IP address of the device
-$cs3ip = "192.168.2.125";
+$cs3ip = $_COOKIE["cs3ip"];
 
 // URL of the API to fetch data from
 $url = 'http://' . $cs3ip . '/app/api/system';
