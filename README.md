@@ -5,21 +5,24 @@ The project is a work in progress. Bugs probebly won't be fixed. Everyone that w
 ## What it does now?
 
 - Sending and reciving Websocket packages to and from the CS3.
-- Reading and displaying train images, infos and show the speed in realtime.
+- Reading and displaying train images, infos and showing the speed, direction and functions in realtime.
+- Stopping and Starting the CS3.
+- Controlling the speed, direction and functions of the trains.
+- Automaticly scanning for the CS3 WebSocket server;
 
 A Custom programming language will be developed which is based on Märklin PAPS and PHP.
 
 ## How to use?
 
 1. Connect the CS3 to the local network.
-2. Get the IP of the CS3
-3. Change the IP in webs.php and loks.php
-4. Install an Apache and PHP server (XAMPP is a recomended simple program for this) and replace the files in htdocs folder.
-5. Start the server and access the webinterface througt the browser under http://localhost/webs.php or http://127.XXX.XXX.XXX/webs.php
+2. Get the IP of the CS3(optional).
+3. Install an Apache and PHP server (XAMPP is a recomended simple program for this) and replace the files in htdocs folder.
+4. Start the server and access the webinterface througt the browser under http://localhost/index.php or http://127.XXX.XXX.XXX/index.php
 
 
 UI is still not resizeble. But will when all the UI is finished.
-![WebSocket Client - Google Chrome 21 05 2024 01_54_20](https://github.com/kamil00110/Marklin-CS3-Custom-Webinterface/assets/68923965/c804cfca-cb23-4789-8f74-eb26875a6117)
+![WebSocket Client - Google Chrome 24 05 2024 20_04_47](https://github.com/kamil00110/Marklin-CS3-Custom-Webinterface/assets/68923965/6eea4b4e-d37f-4377-bf54-1c6773586d13)
+
 
 ## Known important commands and adresses:
 
@@ -53,13 +56,13 @@ UI is still not resizeble. But will when all the UI is finished.
 ### Adresses:
 
 ```
-http://CS3 IP/app/api/loks, mag, mags, devs, prefs, gbs, info, filemanager, automatics, helps, system
+http://CS3 IP/app/api/loks/ XXX.png, mag, mags, devs, prefs, gbs, info, filemanager, automatics, helps, system
 http://CS3 IP/config/geraet.vrs, lokomotive.cs2, fahrstrassen.cs2, gleisbild.cs2, magnetartikel.cs2
+http://CS3 IP/config/app/assets/fct/ XXX.svg
 ```
 
 ## Planned features:
 
-- train controll
 - camera train controll
 - mag controll
 - s88 reedout
