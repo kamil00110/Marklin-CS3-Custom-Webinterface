@@ -57,7 +57,7 @@ $data2 = fetchData($url2);
 if ($data2) {
     $jsonData2 = json_decode($data2, true);
     foreach ($jsonData2 as $part2) {	
-		$info = file_get_contents("data.txt");
+		$info = file_get_contents("tmp/data.txt");
         $speed = htmlspecialchars($part2['speed'] ?? 'None');
 		$name = htmlspecialchars($part2['name'] ?? 'None');
 		$dir = htmlspecialchars($part2['dir'] ?? 'None');
@@ -121,7 +121,7 @@ if ($data2) {
                         $state = htmlspecialchars($funktion['state'] ?? 'None');
 						$fIcon = $fIcon = "http://".$cs3ip."/app/assets/fct/".$fIcon.".svg";
 						if($fIcon == "http://".$cs3ip."/app/assets/fct/None.svg"){
-							$fIcon = "none.svg";
+							$fIcon = "img/none.svg";
 						}
 					if($state==1){
 					    echo "<button class='button' onclick='sendWs(\"lok\",\"$internname\",\"func\",\"$nr\",\"0\")'>
@@ -184,7 +184,7 @@ if ($data2) {
                         $state = htmlspecialchars($funktion['state'] ?? 'None');
 						$fIcon = $fIcon = "http://".$cs3ip."/app/assets/fct/".$fIcon.".svg";
 						if($fIcon == "http://".$cs3ip."/app/assets/fct/None.svg"){
-							$fIcon = "none.svg";
+							$fIcon = "img/none.svg";
 						}
 					if($state==1){
 					    echo "<button class='button' onclick='sendWs(\"lok\",\"$internname\",\"func\",\"$nr\",\"0\")'>

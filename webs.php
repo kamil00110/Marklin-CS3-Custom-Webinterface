@@ -16,14 +16,17 @@
             margin-bottom: 0px;
             padding: 0px;
             background-color: #f9f9f9;
+			display:none;
         }
         #message {
             width: 50%;
             padding: 10px;
             margin-right: 10px;
+			display:none;
         }
         #send {
             padding: 10px 20px;
+			display:none;
         }
     </style>
 </head>
@@ -32,20 +35,45 @@
 if(!isset($_COOKIE["cs3ip"])){
 	header("Location: index.php");
 }
-?>
-	<div style='display:flex; align-items:center; padding-left: 70px; padding-right: 70px; background-color: #e8e8e8; border-radius: 0px 0px 20px 20px; margin-left: 1vw; margin-right: 1vw; position: absolute; top: 0; width:90vw; height: 90px;'>
-	<div style=' margin: 10px; border-radius: 10px; position: relative; background-color: #ededed; width: 72px; height: 72px;'>
-	<svg
-	   style='margin: 12px 12px 5px 5px;'
-       width="83%"
-       viewBox="0 0 50 40"
-       fill="none"
-       xmlns="http://www.w3.org/2000/svg">
-       <rect x="5" y="4" width="41" height="32" rx="8" fill="#f7f7f7" stroke="#4f4f4f" stroke-width="1.5"/>
-       <path d="M14 15L22 20L14 25" stroke="#4f4f4f" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
-       <rect x="25" y="26" width="12" height="2" rx="0.5" fill="#4f4f4f"/>
-    </svg>
-	</div>
+?>  
+    
+	<div style='z-index: 10; display:flex; align-items:center; padding-left: 70px; padding-right: 70px; background-color: #e8e8e8; border-radius: 0px 0px 20px 20px; margin-left: 1vw; margin-right: 1vw; position: absolute; top: 0; width:90vw; height: 90px;'>
+	<button class='button' style='width=200px;' onclick='loadWindow("ws_terminal.php")'>  
+		  <div style=' margin: 10px; border-radius: 10px; position: relative; background-color: #ededed; width: 72px; height: 72px;'>
+	<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="60" height="60">
+  <rect x="10" y="10" width="80" height="80" rx="10" stroke="#666" stroke-width="4" fill="none" />
+
+  <line x1="20" y1="50" x2="80" y2="50" stroke="#333" stroke-width="6" />
+  <line x1="20" y1="70" x2="80" y2="70" stroke="#333" stroke-width="6" />
+
+  <rect x="22" y="40" width="6" height="40" fill="#333" />
+  <rect x="34" y="40" width="6" height="40" fill="#333" />
+  <rect x="46" y="40" width="6" height="40" fill="#333" />
+  <rect x="58" y="40" width="6" height="40" fill="#333" />
+  <rect x="70" y="40" width="6" height="40" fill="#333" />
+
+
+  <circle cx="20" cy="50" r="3" fill="#333" />
+  <circle cx="20" cy="70" r="3" fill="#333" />
+  <circle cx="80" cy="50" r="3" fill="#333" />
+  <circle cx="80" cy="70" r="3" fill="#333" />
+</svg>
+</div>
+</button>
+	<button class='button' style='width=200px;' onclick='loadWindow("cmd.php")'>  
+		  <div style=' margin: 10px; border-radius: 10px; position: relative; background-color: #ededed; width: 72px; height: 72px;'>
+	          <svg
+	              style='margin: 12px 12px 5px 5px;'
+                  width='83%'
+                  viewBox='0 0 50 40'
+                  fill='none'
+                  xmlns='http://www.w3.org/2000/svg'>
+                  <rect x='5' y='4' width='41' height='32' rx='8' fill='#f7f7f7' stroke='#4f4f4f' stroke-width='1.5'/>
+                  <path d='M14 15L22 20L14 25' stroke='#4f4f4f' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'/>
+                  <rect x='25' y='26' width='12' height='2' rx='0.5' fill='#4f4f4f'/>
+              </svg>
+	     </div>
+    </button>
 	<div class='help' style='font-size:0px; margin: 10px; border-radius: 10px; position: relative; background-color: #ededed; width: 72px; height: 72px;'>
 	<p>Every action on the CS3 renturns data</p>
 	<p>set s88 kontakt 42["event_data","{\"s88\":{\"oldstate\":\"2\",\"s88kontakt\":\"1\",\"s88kennung\":\"1\",\"state\":\"1 or 0\"}}"] </p>
@@ -69,198 +97,56 @@ if(!isset($_COOKIE["cs3ip"])){
         <line x1="20" y1="48" x2="52" y2="48" stroke="#4f4f4f" stroke-width="4" stroke-linecap="round"/>
         <text  font-weight="bold" x="15" y="17" fill="#4f4f4f" font-family="Arial" font-size="32" text-anchor="start" dominant-baseline="hanging">?</text>
 	</svg>
+	
     </div>
     <div class="state"></div>
+	<div class="mag_but"></div>
+	<div class="s88_but"></div>
+	<div class="scripts_but"></div>
+	<div class="settings_but"></div>
     </div>
-    <div style="position: relative; top:200px;"><h1>WebSocket Client</h1><div id="log"></div>
+	    <div class='mags'></div>
+		<div id='con'></div>
+
+    <div><div id="log"></div>
     <input type="text" id="message" placeholder="Input Commands">
-    <button id="send">Send</button>
+    <button id="send"></button>
 	</div>
+
+    
 <script>
-function getCookie(cname) {
-  let name = cname + "=";
-  let ca = document.cookie.split(';');
-  for(let i = 0; i < ca.length; i++) {
-    let c = ca[i];
-    while (c.charAt(0) == ' ') {
-      c = c.substring(1);
-    }
-    if (c.indexOf(name) == 0) {
-      return c.substring(name.length, c.length);
-    }
-  }
-  return "";
-}
-</script>
-<script>
-  async function loadContentForClass(className, url) {
-    try {
-      const response = await fetch(url);
-      if (response.ok) {
-        const newContent = await response.text();
-        const elements = document.getElementsByClassName(className);
-        for (let element of elements) {
-          element.innerHTML = newContent;
-        }
-      } else {
-        console.error(`Error fetching content for ${className}:`, response.statusText);
-      }
-    } catch (error) {
-      console.error(`Error fetching content for ${className}:`, error);
-    }
-  }
-
-  // Reload the content for the 'loks' div every 100 milliseconds
-  setInterval(() => loadContentForClass('loks', 'loks.php'), 1000);
-  // Reload the content for all 'lokcontroll' divs every 100 milliseconds
-  setInterval(() => loadContentForClass('state', 'state.php'), 1000);
-  setInterval(() => loadContentForClass('lokcontroll', 'lokcontroll.php'), 1000);
-</script>
-<script>
-function myFunction(internname) {
-	const input = document.getElementById('mySlider');
-	const inputValue = input.value;
-	let test = internname+":"+inputValue;
-    //alert(test);
-	sendWs("lok",internname,"speed", inputValue, "0");
-
-
-}
-</script>
-<script>
-function sendWs(type, name, func, addres, state){
-        let ws;
-		let ip = getCookie("cs3ip");
-        const wsUrl = 'ws://'+ip+':8080/socket.io/?EIO=3&transport=websocket'; // Adjust the endpoint as needed
-		ws = new WebSocket(wsUrl);
-		
-		if (type == "lok"){
-			
-			if (func == "speed"){
-				let message = '42["event_data","{ \\"lok\\":{\\"name\\":\\"'+name+'\\",\\"speed\\":\\"'+addres+'\\"}}"]';
-				sendws(message);
-			}
-			if (func == "dir"){
-				let message = '42["event_data","{ \\"lok\\":{\\"name\\":\\"'+name+'\\",\\"dir\\":\\"'+addres+'\\"}}"]';
-				sendws(message);
-			}
-			if (func == "func"){
-				let message = '42["event_data","{ \\"lok\\":{\\"name\\":\\"'+name+'\\",\\"func\\":\\"'+addres+'\\",\\"state\\":\\"'+state+'\\"}}"]';
-				sendws(message);
-			}
-		}
-		if (type == "mag"){
-			
-		}
-		if (type == "s88"){
-			alert(name);
-		}
-		if (type == "cs3"){
-			let message = '42["event_data","{ \\"cs3\\":{\\"state\\":\\"'+state+'\\"}}"]';
-		    sendws(message);
-		}
-        ws.send(message);
-		log('Sent: ' + message);
-
-}
-    </script>
-    <script>
-        let ws;
-		let ip = getCookie("cs3ip");
-        const wsUrl = 'ws://'+ip+':8080/socket.io/?EIO=3&transport=websocket'; // Adjust the endpoint as needed
-
-        function connect() {
-            log('Attempting to connect to WebSocket...');
-            ws = new WebSocket(wsUrl);
-
-            ws.onopen = function(event) {
-                log('Connected to WebSocket');
-            };
-
-            ws.onmessage = function(event) {
-                log('Received: ' + event.data);
-            };
-
-            ws.onerror = function(event) {
-                log('WebSocket error: ' + event);
-            };
-
-            ws.onclose = function(event) {
-                log(`WebSocket closed. Code: ${event.code}, Reason: ${event.reason}`);
-                if (event.code !== 1000) { // 1000 means normal closure
-                    log('Reconnecting in 3 seconds...');
-                    setTimeout(connect, 100); // Attempt to reconnect after 3 seconds
-                }
-            };
-        }
-
-        document.getElementById('send').addEventListener('click', function() {
-            const message = document.getElementById('message').value
-            if (message && ws.readyState === WebSocket.OPEN) {
-                ws.send(message);
-                log('Sent: ' + message);
-                document.getElementById('message').value = '';
-            } else {
-                log('WebSocket is not open.');
+    function getCookie(cname) {
+          let name = cname + "=";
+          let ca = document.cookie.split(';');
+          for(let i = 0; i < ca.length; i++) {
+            let c = ca[i];
+            while (c.charAt(0) == ' ') {
+              c = c.substring(1);
             }
-        });
-		function sendws(data) {
-            const message = data;
-            if (message && ws.readyState === WebSocket.OPEN) {
-                ws.send(message);
-                log('Sent: ' + message);
-                document.getElementById('message').value = '';
-            } else {
-                log('WebSocket is not open.');
+            if (c.indexOf(name) == 0) {
+              return c.substring(name.length, c.length);
             }
-        };
-
-        function log(message) {
-            const logDiv = document.getElementById('log');
-            const newMessage = document.createElement('div');
-            newMessage.textContent = message;
-            logDiv.appendChild(newMessage);
-            logDiv.scrollTop = logDiv.scrollHeight; // Auto scroll to bottom
+          }
+          return "";
         }
-
-        // Initialize WebSocket connection
-        connect();
     </script>
-
-
-<script>
-// Function to get the URL fragment
-function getFragment() {
-    var fragment = window.location.hash.substring(1);
-    return fragment || "No fragment found";
-}
-
-// Function to send the JavaScript variable to the server
-function sendToServer(data) {
-    var xhr = new XMLHttpRequest();
-    xhr.open("POST", "save_data.php", true); // Point to the PHP script
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState == 4 && xhr.status == 200) {
-            console.log("Data sent to server and saved successfully: " + data);
-            document.getElementById("status").innerText = "Data sent to server: " + data;
-        }
-    };
-    xhr.send("data=" + encodeURIComponent(data));
-}
-
-// Function to repeatedly get the fragment and send data to the server
-function repeatSendToServer(interval) {
-    setInterval(function() {
-        var jsVar = getFragment();
-        sendToServer(jsVar);
-    }, interval);
-}
-
-// Send the fragment to the server every 3 seconds
-repeatSendToServer(1000); // 3000 milliseconds = 3 seconds
-</script>
-<script src="slider.js"></script>
+    <script src="js/load.js"></script>
+	<script>
+		function myFunction(internname) {
+			const input = document.getElementById('mySlider');
+			const inputValue = input.value;
+			let test = internname+":"+inputValue;
+  	    	//alert(test);
+			sendWs("lok",internname,"speed", inputValue, "0");
+    }
+    </script>
+    <script src="js/ws_send.js"></script>
+	<script src="js/loadWindow.js"></script>
+    <script src="js/ws_terminal.js">
+	
+	</script>
+    <script src="js/update_func.js"></script>
+    <script src="js/slider.js"></script>
 	<div id="" style='margin-top: 9vh; margin-bottom: 0vh; position: absolute; top:10vh; right:0; border-radius: 20px 0px 0px 10px; width:20vw; height:81vh; background-color: #e8e8e8; display:flex; align-items:center; overflow-x: scroll;'>
 	<div style="position:absolute; z-index:9999;" class='lokcontroll'></div>
 	<?php

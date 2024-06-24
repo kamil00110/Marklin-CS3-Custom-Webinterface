@@ -98,12 +98,12 @@ document.getElementById('scanButton').addEventListener('click', async () => {
     });
   };
 
-  const servers = await scanNetwork();
-  const resultText = servers.length > 0 ? `Found CS3 at:<br>${servers.join('<br>')}` : 'No CS3 found.';
+  let servers = await scanNetwork();
+  let resultText = servers.length > 0 ? `Found CS3 at:<br>${servers.join('<br>')}` : 'No CS3 found.';
   servers.length > 0 ? document.write("cs3 found"):alert("no cs3 found");
   resultContainer.innerHTML = resultText;
   if(servers.length < 1){
-      servers = prompt('enter ip here:');
+      let servers = prompt('enter ip here:');
 	  document.cookie = "cs3ip="+servers+"; expires=Thu, 18 Dec 2033 12:00:00 UTC; path=/";
 	  window.location.replace("webs.php");
   }

@@ -1,0 +1,17 @@
+------------------
+CS3 Terminal:
+------------------
+This part will only work when the CS3 is rooted with an Reverseshell script.
+To do this press "root cs3" while an EMPTY corectly formated USB stick is in 
+the CS3. Do this only at your own risk I do not take any responsibilitys for 
+bricked CS3s, voided warantys and others. If you accepted the risks the script
+can compile an custom update file (It can be edited and customized in the 
+"payload" folder when the Server runs or Linux or Windows with corectly setuped
+WSL (tested with Kali Distro) else a precompile Image will be used that is 
+included in this build) and after that upload it to the CS3 and apply 
+the update. Don't be scared and DON'T RESTART THE CS3!!! It will auto reboot to
+the loginscreen and be stuck here for a longer time while installing the update
+and auto reboting on it's own when finished. When succesfully connected this 
+commandline will Show "conected XXX.XXX.XXX.XXX". When this dosnt happens then
+try to restart the Website, restart the CS3 or making sure everything was 
+setuped corectly.
