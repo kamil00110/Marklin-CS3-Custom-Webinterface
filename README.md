@@ -1,6 +1,6 @@
 # Märklin CS3 Custom Webinterface Project
 
-The project is a work in progress. Bugs probebly won't be fixed. Everyone that wants to add features is allowed to help in this project. 
+The project is a work in progress. Bugs probebly won't be fixed. Everyone that wants to add features is allowed to help in this project. Should be Windows/Linux compatible, but it was only tested on Windows.
 
 ## What it does now?
 
@@ -8,7 +8,12 @@ The project is a work in progress. Bugs probebly won't be fixed. Everyone that w
 - Reading and displaying train images, infos and showing the speed, direction and functions in realtime.
 - Stopping and Starting the CS3.
 - Controlling the speed, direction and functions of the trains.
-- Automaticly scanning for the CS3 WebSocket server;
+- Controlling Magnets.
+- Reading and Controlling S88 contacts.
+- One click rooting the CS3
+- Comunicating with Net Cat servern on the CS3.
+- Compiling modyfied update files.
+- Automaticly scanning for the CS3 WebSocket server.
 
 A Custom programming language will be developed which is based on Märklin PAPS and PHP.
 
@@ -18,10 +23,12 @@ A Custom programming language will be developed which is based on Märklin PAPS 
 2. Get the IP of the CS3(optional).
 3. Install an Apache and PHP server (XAMPP is a recomended simple program for this) and replace the files in htdocs folder.
 4. Start the server and access the webinterface througt the browser under http://localhost/index.php or http://127.XXX.XXX.XXX/index.php
+5. Optional (Install WSL with a Distro like Kali to compile custom updates)
 
 
 UI is still not resizeble. But will when all the UI is finished.
-![WebSocket Client - Google Chrome 24 05 2024 20_04_47](https://github.com/kamil00110/Marklin-CS3-Custom-Webinterface/assets/68923965/6eea4b4e-d37f-4377-bf54-1c6773586d13)
+![WebSocket Client - Google Chrome 24 06 2024 22_51_52](https://github.com/kamil00110/Marklin-CS3-Custom-Webinterface/assets/68923965/643de64b-25fd-44fb-a0cb-cce0b6c81fe7)
+
 
 
 ## Known important commands and adresses:
@@ -64,11 +71,8 @@ http://CS3 IP/config/app/assets/fct/ XXX.svg
 ## Planned features:
 
 - camera train controll
-- mag controll
-- s88 reedout
 - PHP based programming language
 - track builder
 - onboard sound playback
 - automatic mode
 - train and mag editor
-- other comunications with the CS3
